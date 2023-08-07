@@ -31,3 +31,28 @@ body {
     transform: scale(1.2);
   }
 }
+
+.animated-stamp-button {
+  position: absolute;
+  top: 20px; /* 上端から20pxの位置に配置 */
+  left: 20px; /* 左端から20pxの位置に配置 */
+  font-size: 36px;
+  color: red;
+  background-color: #f7f7f7;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  opacity: 0; /* 初期状態は非表示 */
+}
+
+/* モダン風のアニメーション */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
