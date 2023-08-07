@@ -30,6 +30,15 @@
     posterImage.classList.add('poster-image');
     document.getElementById('animationContainer').appendChild(posterImage);
 
+    // 4秒後にスタンプゲット！ボタンを表示する関数
+    const showStampButton = function() {
+      const stampButton = document.createElement('a');
+      stampButton.href = 'https://koyamadai.github.io/code2';
+      stampButton.textContent = 'スタンプゲット！';
+      stampButton.classList.add('animated-stamp-button', 'stampButton');
+      document.getElementById('animationContainer').appendChild(stampButton);
+    };
+
     // スマートフォン向けにポスター画像をリサイズ
     const resizePosterImage = function() {
       const containerWidth = document.getElementById('animationContainer').offsetWidth;
@@ -49,10 +58,8 @@
         text2F.classList.add('fadeIn');
         posterImage.classList.add('fadeIn');
 
-        // 2秒後にリンク先に遷移
-        setTimeout(function() {
-          window.location.href = 'https://koyamadai.github.io/code2/';
-        }, 1000);
+        // 4秒後にスタンプゲット！ボタンを表示
+        setTimeout(showStampButton, 4000);
       });
     });
   </script>
