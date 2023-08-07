@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Animation Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="animationContainer">
+    <!-- Image and text elements will be added dynamically using JavaScript -->
+  </div>
+  <script>
+    // JavaScriptで必要なアニメーションのロジックを記述します
+    // 以下は一例です。
+
+    // 1. 画像の追加とアニメーション
+    const image = new Image();
+    image.src = 'study_image.jpg';
+    image.classList.add('animated-image');
+    document.getElementById('animationContainer').appendChild(image);
+
+    // 2. "2-F"の追加とアニメーション
+    const textElement2F = document.createElement('div');
+    textElement2F.textContent = '2-F';
+    textElement2F.classList.add('animated-text', 'text2F');
+    document.getElementById('animationContainer').appendChild(textElement2F);
+
+    // 3. ポスターの追加とアニメーション
+    const posterImage = new Image();
+    posterImage.src = 'poster.png';
+    posterImage.classList.add('poster-image');
+    document.getElementById('animationContainer').appendChild(posterImage);
+
+    // スマートフォン向けにポスター画像をリサイズ
+    const resizePosterImage = function() {
+      const containerWidth = document.getElementById('animationContainer').offsetWidth;
+      const posterImageWidth = containerWidth * 0.8; // 画面幅の80%に設定
+      posterImage.style.width = posterImageWidth + 'px';
+    };
+
+    // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
+    document.addEventListener('DOMContentLoaded', function() {
+      resizePosterImage(); // ページロード時にポスター画像をリサイズ
+      window.addEventListener('resize', resizePosterImage); // ウィンドウサイズが変更された時にリサイズ
+      // 画像をクリックすると指定したURLに飛ぶアニメーションを追加
+      image.addEventListener('click', function() {
+        const text2F = document.querySelector('.text2F');
+        const posterImage = document.querySelector('.poster-image');
+
+        text2F.classList.add('fadeIn');
+        posterImage.classList.add('fadeIn');
+
+        // 2秒後にリンク先に遷移
+        setTimeout(function() {
+          window.location.href = 'https://guritori.com/code1';
+        }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
