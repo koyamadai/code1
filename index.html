@@ -44,6 +44,10 @@
       stampButton.textContent = 'スタンプゲット！';
       stampButton.classList.add('animated-stamp-button', 'stampButton');
       document.getElementById('animationContainer').appendChild(stampButton);
+      // ボタンのアニメーションを開始
+      setTimeout(function() {
+        stampButton.classList.add('fadeIn');
+      }, 0);
     };
 
     // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
@@ -60,10 +64,10 @@
 
         // 1秒後にスタンプゲット！ボタンを表示
         setTimeout(showStampButton, 1000);
-        // 2秒後に指定されたページに遷移
+        // 3秒後に指定されたページに遷移
         setTimeout(function() {
           window.location.href = 'https://koyamadai.github.io/code2';
-        }, 500);
+        }, 3000);
       });
     });
   </script>
