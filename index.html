@@ -7,7 +7,6 @@
 <body>
   <div id="animationContainer">
     <!-- Image element will be added dynamically using JavaScript -->
-    <div class="animated-stamp-button stampButton">ゲット！</div>
   </div>
   <script>
     // JavaScriptで必要なアニメーションのロジックを記述します
@@ -19,7 +18,7 @@
     image.classList.add('animated-image');
     document.getElementById('animationContainer').appendChild(image);
 
-    // 画面いっぱいに画像を表示する関数
+    // スマートフォン・タブレット向けに画像をリサイズ
     const resizeImage = function() {
       const containerWidth = document.documentElement.clientWidth;
       const containerHeight = document.documentElement.clientHeight;
@@ -29,14 +28,24 @@
       image.style.height = imageHeight + 'px';
     };
 
+    // 2秒後に指定されたページに遷移する関数
+    const redirectToPage = function() {
+      window.location.href = 'https://koyamadai.github.io/code2/';
+    };
+
     // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
     document.addEventListener('DOMContentLoaded', function() {
       resizeImage(); // ページロード時に画像をリサイズ
       window.addEventListener('resize', resizeImage); // ウィンドウサイズが変更された時にリサイズ
 
       // ゲット！の文字をフェードインする
-      const stampButton = document.querySelector('.stampButton');
+      const stampButton = document.querySelector('.animated-stamp-button');
       stampButton.classList.add('fadeIn');
+      
+      // 画像をクリックまたはタップしたら指定したURLに遷移
+      image.addEventListener('click', function() {
+        redirectToPage();
+      });
     });
   </script>
 </body>
