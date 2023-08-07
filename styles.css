@@ -13,10 +13,14 @@ body {
 
 .animated-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  animation: zoomInAndOut 4s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   cursor: pointer; /* カーソルをポインターに変更 */
+}
+
+.animated-image {
+  animation: zoomInAndOut 4s infinite;
 }
 
 @keyframes zoomInAndOut {
@@ -25,50 +29,5 @@ body {
   }
   50% {
     transform: scale(1.2);
-  }
-}
-
-.animated-text {
-  font-size: 0; /* 初期状態は非表示 */
-}
-
-.text2F {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0); /* 初期状態は非表示 */
-  font-size: 60px; /* フォントサイズを大きくする */
-  font-family: 'Arial', sans-serif; /* モダン風のフォントを設定 */
-}
-
-.poster-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0); /* 初期状態は非表示 */
-}
-
-.animated-stamp-button {
-  position: absolute;
-  top: 20px; /* 上端から20pxの位置に配置 */
-  left: 20px; /* 左端から20pxの位置に配置 */
-  transform: scale(0); /* 初期状態は非表示 */
-  font-size: 36px;
-  color: red;
-  background-color: #f7f7f7;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-/* モダン風のアニメーション */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) scale(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
