@@ -7,6 +7,7 @@
 <body>
   <div id="animationContainer">
     <!-- Image element will be added dynamically using JavaScript -->
+    <a href="https://koyamadai.github.io/code2/" class="animated-stamp-button stampButton">ゲット！</a>
   </div>
   <script>
     // JavaScriptで必要なアニメーションのロジックを記述します
@@ -18,7 +19,7 @@
     image.classList.add('animated-image');
     document.getElementById('animationContainer').appendChild(image);
 
-    // スマートフォン・タブレット向けに画像をリサイズ
+    // 画面いっぱいに画像を表示する関数
     const resizeImage = function() {
       const containerWidth = document.documentElement.clientWidth;
       const containerHeight = document.documentElement.clientHeight;
@@ -26,11 +27,6 @@
       const imageHeight = (image.naturalHeight / image.naturalWidth) * imageWidth;
       image.style.width = imageWidth + 'px';
       image.style.height = imageHeight + 'px';
-    };
-
-    // 2秒後に指定されたページに遷移する関数
-    const redirectToPage = function() {
-      window.location.href = 'https://koyamadai.github.io/code2/';
     };
 
     // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
@@ -47,6 +43,11 @@
         redirectToPage();
       });
     });
+
+    // 2秒後に指定されたページに遷移する関数
+    const redirectToPage = function() {
+      window.location.href = 'https://koyamadai.github.io/code2/';
+    };
   </script>
 </body>
 </html>
