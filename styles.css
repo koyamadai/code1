@@ -50,9 +50,9 @@ body {
 
 .animated-stamp-button {
   position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translateX(-50%) scale(0); /* 初期状態は非表示 */
+  top: 20px; /* 上端から20pxの位置に配置 */
+  left: 20px; /* 左端から20pxの位置に配置 */
+  transform: scale(0); /* 初期状態は非表示 */
   font-size: 36px;
   color: red;
   background-color: #f7f7f7;
