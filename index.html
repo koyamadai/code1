@@ -6,7 +6,7 @@
 </head>
 <body>
   <div id="animationContainer">
-    <!-- Image and text elements will be added dynamically using JavaScript -->
+    <!-- Image element will be added dynamically using JavaScript -->
   </div>
   <script>
     // JavaScriptで必要なアニメーションのロジックを記述します
@@ -18,56 +18,26 @@
     image.classList.add('animated-image');
     document.getElementById('animationContainer').appendChild(image);
 
-    // 2. "2-F"の追加とアニメーション
-    const textElement2F = document.createElement('div');
-    textElement2F.textContent = '2-F';
-    textElement2F.classList.add('animated-text', 'text2F');
-    document.getElementById('animationContainer').appendChild(textElement2F);
-
-    // 3. ポスターの追加とアニメーション
-    const posterImage = new Image();
-    posterImage.src = 'poster.png';
-    posterImage.classList.add('poster-image');
-    document.getElementById('animationContainer').appendChild(posterImage);
-
-    // スマートフォン・タブレット向けにポスター画像をリサイズ
-    const resizePosterImage = function() {
+    // スマートフォン・タブレット向けに画像をリサイズ
+    const resizeImage = function() {
       const containerWidth = document.getElementById('animationContainer').offsetWidth;
-      const posterImageWidth = containerWidth * 0.8; // 画面幅の80%に設定
-      posterImage.style.width = posterImageWidth + 'px';
+      const imageWidth = containerWidth * 0.8; // 画面幅の80%に設定
+      image.style.width = imageWidth + 'px';
     };
 
-    // 2秒後にスタンプゲット！ボタンを表示する関数
-    const showStampButton = function() {
-      const stampButton = document.createElement('a');
-      stampButton.href = 'https://koyamadai.github.io/code2';
-      stampButton.textContent = 'スタンプゲット！';
-      stampButton.classList.add('animated-stamp-button', 'stampButton');
-      document.getElementById('animationContainer').appendChild(stampButton);
-      // ボタンのアニメーションを開始
-      setTimeout(function() {
-        stampButton.classList.add('fadeIn');
-      }, 0);
+    // 2秒後に指定されたページに遷移する関数
+    const redirectToPage = function() {
+      window.location.href = 'https://koyamadai.github.io/code2';
     };
 
     // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
     document.addEventListener('DOMContentLoaded', function() {
-      resizePosterImage(); // ページロード時にポスター画像をリサイズ
-      window.addEventListener('resize', resizePosterImage); // ウィンドウサイズが変更された時にリサイズ
-      // 画像をクリックすると指定したURLに飛ぶアニメーションを追加
+      resizeImage(); // ページロード時に画像をリサイズ
+      window.addEventListener('resize', resizeImage); // ウィンドウサイズが変更された時にリサイズ
+      // 画像をクリックすると指定したURLに遷移
       image.addEventListener('click', function() {
-        const text2F = document.querySelector('.text2F');
-        const posterImage = document.querySelector('.poster-image');
-
-        text2F.classList.add('fadeIn');
-        posterImage.classList.add('fadeIn');
-
-        // 1秒後にスタンプゲット！ボタンを表示
-        setTimeout(showStampButton, 1000);
-        // 3秒後に指定されたページに遷移
-        setTimeout(function() {
-          window.location.href = 'https://koyamadai.github.io/code2';
-        }, 3000);
+        // 2秒後に指定されたページに遷移
+        setTimeout(redirectToPage, 2000);
       });
     });
   </script>
