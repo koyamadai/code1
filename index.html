@@ -30,7 +30,7 @@
     posterImage.classList.add('poster-image');
     document.getElementById('animationContainer').appendChild(posterImage);
 
-    // スマートフォン向けにポスター画像をリサイズ
+    // スマートフォン・タブレット向けにポスター画像をリサイズ
     const resizePosterImage = function() {
       const containerWidth = document.getElementById('animationContainer').offsetWidth;
       const posterImageWidth = containerWidth * 0.8; // 画面幅の80%に設定
@@ -63,11 +63,11 @@
         posterImage.classList.add('fadeIn');
 
         // 1秒後にスタンプゲット！ボタンを表示
-        setTimeout(showStampButton, 10);
+        setTimeout(showStampButton, 1000);
         // 3秒後に指定されたページに遷移
         setTimeout(function() {
           window.location.href = 'https://koyamadai.github.io/code2';
-        }, 1000);
+        }, 3000);
       });
     });
   </script>
