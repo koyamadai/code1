@@ -30,6 +30,13 @@
     posterImage.classList.add('poster-image');
     document.getElementById('animationContainer').appendChild(posterImage);
 
+    // スマートフォン向けにポスター画像をリサイズ
+    const resizePosterImage = function() {
+      const containerWidth = document.getElementById('animationContainer').offsetWidth;
+      const posterImageWidth = containerWidth * 0.8; // 画面幅の80%に設定
+      posterImage.style.width = posterImageWidth + 'px';
+    };
+
     // 2秒後にスタンプゲット！ボタンを表示する関数
     const showStampButton = function() {
       const stampButton = document.createElement('a');
@@ -37,13 +44,6 @@
       stampButton.textContent = 'スタンプゲット！';
       stampButton.classList.add('animated-stamp-button', 'stampButton');
       document.getElementById('animationContainer').appendChild(stampButton);
-    };
-
-    // スマートフォン向けにポスター画像をリサイズ
-    const resizePosterImage = function() {
-      const containerWidth = document.getElementById('animationContainer').offsetWidth;
-      const posterImageWidth = containerWidth * 0.8; // 画面幅の80%に設定
-      posterImage.style.width = posterImageWidth + 'px';
     };
 
     // ページが読み込まれた後にアニメーションを開始するなどのロジックを追加します
