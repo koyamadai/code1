@@ -58,9 +58,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.754); /* 濃い灰色に変更 */
+            background-color: rgba(255, 255, 255, 0.754);
             border-radius: 20px;
-            border: 1０px solid rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -84,36 +84,15 @@
         }
 
         #downloadButton {
-            background-color: white;
-            color: #DE4645;
+            background-image: url('st.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: rgba(0, 0, 0, 0);
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 0;
+            width: 120px;
+            height: 50px;
             cursor: pointer;
-        }
-
-     
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            transform: rotate(45deg);
-            opacity: 0;
-            animation: confettiAnimation 5s infinite;
-        }
-
-        @keyframes confettiAnimation {
-            0% {
-                opacity: 1;
-                transform: translate3d(0, 0, 0) rotate(45deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate3d(calc(100vw - 10px), calc(100vh - 10px), 0) rotate(45deg);
-            }
         }
 
         /* フード画像のスタイル */
@@ -154,7 +133,7 @@
             賞品だよ。受け取ってね！
         </p>
         <div class="download-section">
-            <button id="downloadButton">スタンプゲット</button>
+            <button id="downloadButton"></button>
         </div>
     </section>
 
@@ -166,16 +145,6 @@
 
     <script>
         var image = document.getElementById('image');
-
-      
-            celebrationContainer.classList.add('confetti-animation');
-
-            document.body.appendChild(celebrationContainer);
-
-            setTimeout(function() {
-                celebrationContainer.remove();
-            }, 5000);
-        }
 
         // ページがロードされたらアニメーションを実行
         window.onload = function() {
@@ -189,8 +158,6 @@
                 image.style.transform = 'scale(1)';
                 image.classList.remove('img-rounded');
             }, 4000);
-
-            celebrateAnimation();
         };
 
         var downloadButton = document.getElementById('downloadButton');
