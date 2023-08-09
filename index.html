@@ -152,12 +152,7 @@
             image.style.transform = 'scale(1.2)';
             image.classList.add('img-rounded');
 
-            // 4秒後に元のサイズに戻す
-            setTimeout(function() {
-                image.style.transition = 'transform 0.5s ease';
-                image.style.transform = 'scale(1)';
-                image.classList.remove('img-rounded');
-            }, 4000);
+           
         };
 
         var downloadButton = document.getElementById('downloadButton');
