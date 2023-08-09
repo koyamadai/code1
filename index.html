@@ -77,15 +77,13 @@
 
         .image-description {
             margin-top: 20px;
-            position: relative;
             text-align: center;
+            color: #333; /* 文字の色を変更 */
+            position: relative; /* 相対位置指定 */
+            max-width: 100%;
         }
 
         .image-description img {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
             max-width: 100%;
         }
 
@@ -100,8 +98,8 @@
             background-color: rgba(0, 0, 0, 0);
             border: none;
             padding: 0;
-            width: 180px;
-            height: 80px;
+            width: 240px; /* ボタンの幅を調整 */
+            height: 100px; /* ボタンの高さを調整 */
             cursor: pointer;
         }
 
@@ -139,13 +137,13 @@
                 <img src="study_image.jpg" id="image" alt="スタンプ">
             </div>
         </div>
-        <p class="image-description">
-            <img src="obe.png" alt="賞品">
-            賞品だよ。受け取ってね！
-        </p>
         <div class="download-section">
             <button id="downloadButton"></button>
         </div>
+        <p class="image-description">
+            <img src="obe.png" alt="賞品">
+            <span>賞品だよ。受け取ってね！</span>
+        </p>
     </section>
 
     <div class="food-container">
@@ -157,7 +155,38 @@
     <script>
         var image = document.getElementById('image');
 
-        // ... 以前のスクリプト ...
+        var downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', function() {
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (userAgent.indexOf('android') !== -1) {
+                // Androidの場合は画像を保存する
+                saveImageOnAndroid();
+            } else {
+                // iOSの場合はユーザに保存を促す
+                showSaveImagePrompt();
+            }
+        });
+
+        function saveImageOnAndroid() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0);
+
+            var dataURL = canvas.toDataURL('image/jpeg');
+
+            var a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'study_image.jpg';
+            a.click();
+        }
+
+        function showSaveImagePrompt() {
+            // iOSの場合はアラートを表示する
+            alert('画像内の余白を長押しし、"写真"に保存を選択してください。');
+        }
     </script>
 </body>
 </html>
