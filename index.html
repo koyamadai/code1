@@ -8,11 +8,11 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Yu Gothic', sans-serif;
+            font-family: 'Mamelon', sans-serif; /* 新しいフォントを適用 */
             overflow-x: hidden;
         }
         span.sample3 {
-            font-family: "Yu Gothic";
+            font-family: "Mamelon", sans-serif; /* 新しいフォントを適用 */
         }
         .background-container {
             position: fixed;
@@ -225,20 +225,4 @@
             var ctx = canvas.getContext('2d');
             canvas.width = image.naturalWidth;
             canvas.height = image.naturalHeight;
-            ctx.drawImage(image, 0, 0);
-
-            var dataURL = canvas.toDataURL('image/jpeg');
-
-            var a = document.createElement('a');
-            a.href = dataURL;
-            a.download = 'study_image.jpg';
-            a.click();
-        }
-
-        function showSaveImagePrompt() {
-            // iOSの場合はアラートを表示する
-            alert('画像内の余白を長押しし、"写真"に保存を選択してください。');
-        }
-    </script>
-</body>
-</html>
+            ctx.drawImage
