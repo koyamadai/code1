@@ -115,6 +115,17 @@
             height: 80px;
             cursor: pointer;
         }
+        #downloadButtonAI { /* 2番目のボタン用のスタイル */
+            background-image: url('ai.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            padding: 0;
+            width: 200px;
+            height: 80px;
+            cursor: pointer;
+        }
         .ai-image-container {
             position: relative;
             max-width: 80%;
@@ -165,7 +176,7 @@
     <section class="content">
         <h1>スタンプゲット！！</h1>
         <div class="image-gallery">
-            <!-- study_image.jpgを中央配置 -->
+            <!-- 1番目の画像 -->
             <div class="image-container">
                 <div class="image-overlay"></div>
                 <img src="study_image.jpg" id="image" alt="スタンプ">
@@ -176,11 +187,13 @@
             <p>賞品だよ。受け取ってね！</p>
         </div>
         <div class="download-section">
+            <!-- 1番目のボタン -->
             <button id="downloadButton"></button>
         </div>
     </section>
 
     <section class="content">
+        <!-- 2番目の画像 -->
         <div class="ai-image-container">
             <div class="ai-image-overlay"></div>
             <img src="ai.jpg" id="aiImage" alt="AIスタンプ">
@@ -190,9 +203,10 @@
             <p>賞品だよ！</p>
         </div>
         <div class="download-section">
-            <button id="downloadButton"></button>
+            <!-- 2番目のボタン -->
+            <button id="downloadButtonAI"></button>
         </div>
-        <div style="height: 70px;"></div>
+        <div style="height: 40px;"></div>
     </section>
 
     <div class="food-container">
@@ -206,22 +220,39 @@
         var aiImage = document.getElementById('aiImage');
 
         var downloadButton = document.getElementById('downloadButton');
+        var downloadButtonAI = document.getElementById('downloadButtonAI');
+
         downloadButton.addEventListener('click', function() {
             var userAgent = navigator.userAgent.toLowerCase();
 
             if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
                 // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
-                saveImageOniOS();
+                saveImageOniOS(image);
             } else if (userAgent.indexOf('android') !== -1) {
                 // Androidの場合は画像をダウンロードする
-                downloadImageOnAndroid();
+                downloadImageOnAndroid(image);
             } else {
                 // 他のデバイスの場合はメッセージを表示
                 alert('画像の保存はサポートされていません。');
             }
         });
 
-        function saveImageOniOS() {
+        downloadButtonAI.addEventListener('click', function() {
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
+                // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
+                saveImageOniOS(aiImage);
+            } else if (userAgent.indexOf('android') !== -1) {
+                // Androidの場合は画像をダウンロードする
+                downloadImageOnAndroid(aiImage);
+            } else {
+                // 他のデバイスの場合はメッセージを表示
+                alert('画像の保存はサポートされていません。');
+            }
+        });
+
+        function saveImageOniOS(image) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
             canvas.width = image.naturalWidth;
@@ -239,7 +270,7 @@
             document.body.removeChild(a);
         }
 
-        function downloadImageOnAndroid() {
+        function downloadImageOnAndroid(image) {
             // Androidの場合は画像をダウンロードする
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
