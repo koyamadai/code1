@@ -11,15 +11,14 @@
             font-weight: normal;
             font-style: normal;
         }
-         body {
+        body {
             margin: 0;
             padding: 0;
-            font-family: 'Mamelon', sans-serif; /* 新しいフォントを適用 */
+            font-family: 'Mamelon', sans-serif;
             overflow-x: hidden;
         }
-
         span.sample3 {
-            font-family: "Mamelon", sans-serif; /* 新しいフォントを適用 */
+            font-family: "Mamelon", sans-serif;
         }
         .background-container {
             position: fixed;
@@ -30,7 +29,6 @@
             z-index: -1;
             animation: backgroundScroll 20s linear infinite;
         }
-
         @keyframes backgroundScroll {
             0% {
                 background-position: 0 0;
@@ -39,7 +37,13 @@
                 background-position: 0 100%;
             }
         }
-
+        /* ヘッダー画像のスタイル */
+        #header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
         .content {
             display: flex;
             flex-direction: column;
@@ -48,19 +52,16 @@
             color: white;
             z-index: 1;
         }
-
         .image-gallery {
             margin-top: 20px;
             display: flex;
             justify-content: center;
         }
-
         .image-container {
             position: relative;
             max-width: 80%;
             margin: 0 auto;
         }
-
         .image-overlay {
             position: absolute;
             top: 0;
@@ -72,18 +73,15 @@
             border: 1px solid rgb(62, 62, 62);
             z-index: 1;
         }
-
         #image {
             max-width: 100%;
             border-radius: 20px;
             position: relative;
             z-index: 2;
         }
-
         .img-rounded {
             border-radius: 50%;
         }
-
         .image-description {
             margin-top: 20px;
             text-align: center;
@@ -91,11 +89,9 @@
             position: relative;
             z-index: 3;
         }
-
         .image-description img {
             max-width: 100%;
         }
-
         .image-description p {
             position: absolute;
             top: 50%;
@@ -105,11 +101,9 @@
             padding: 0;
             font-weight: bold;
         }
-
         .download-section {
             margin-top: 30px;
         }
-
         #downloadButton {
             background-image: url('st.png');
             background-repeat: no-repeat;
@@ -121,13 +115,11 @@
             height: 80px;
             cursor: pointer;
         }
-
         .ai-image-container {
             position: relative;
             max-width: 80%;
             margin: 0 auto;
         }
-
         .ai-image-overlay {
             position: absolute;
             top: 0;
@@ -139,14 +131,12 @@
             border: 1px solid rgb(62, 62, 62);
             z-index: 1;
         }
-
         #aiImage {
             max-width: 100%;
             border-radius: 20px;
             position: relative;
             z-index: 2;
         }
-
         /* フード画像のスタイル */
         .food-container {
             position: fixed;
@@ -159,7 +149,6 @@
             padding: 10px 0;
             background-color: rgba(0, 0, 0, 0);
         }
-
         .food-img {
             max-width: 100%;
             border-radius: 10px;
@@ -170,8 +159,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ヘッダー画像 -->
+    <img src="head.png" id="header" alt="ヘッダー画像">
     <div class="background-container"></div>
-
     <section class="content">
         <h1>スタンプゲット！！</h1>
         <div class="image-gallery">
@@ -191,16 +181,16 @@
     </section>
 
     <section class="content">
-       div class="ai-image-container">
-        <div class="ai-image-overlay"></div>
-        <img src="ai.jpg" id="aiImage" alt="AIスタンプ">
+        <div class="ai-image-container">
+            <div class="ai-image-overlay"></div>
+            <img src="ai.jpg" id="aiImage" alt="AIスタンプ">
         </div>
-         <div class="image-description">
-        <img src="obe.png" alt="賞品">
-        <p>賞品だよ！</p>
+        <div class="image-description">
+            <img src="obe.png" alt="賞品">
+            <p>賞品だよ！</p>
         </div>
         <div class="download-section">
-        <button id="downloadButton"></button>
+            <button id="downloadButton"></button>
         </div>
     </section>
 
@@ -210,64 +200,63 @@
         </a>
     </div>
 
-   <script>
-    var image = document.getElementById('image');
-    var aiImage = document.getElementById('aiImage');
+    <script>
+        var image = document.getElementById('image');
+        var aiImage = document.getElementById('aiImage');
 
-    var downloadButton = document.getElementById('downloadButton');
-    downloadButton.addEventListener('click', function() {
-        var userAgent = navigator.userAgent.toLowerCase();
+        var downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', function() {
+            var userAgent = navigator.userAgent.toLowerCase();
 
-        if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
-            // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
-            saveImageOniOS();
-        } else if (userAgent.indexOf('android') !== -1) {
-            // Androidの場合は画像をダウンロードする
-            downloadImageOnAndroid();
-        } else {
-            // 他のデバイスの場合はメッセージを表示
-            alert('画像の保存はサポートされていません。');
+            if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
+                // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
+                saveImageOniOS();
+            } else if (userAgent.indexOf('android') !== -1) {
+                // Androidの場合は画像をダウンロードする
+                downloadImageOnAndroid();
+            } else {
+                // 他のデバイスの場合はメッセージを表示
+                alert('画像の保存はサポートされていません。');
+            }
+        });
+
+        function saveImageOniOS() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0);
+
+            var dataURL = canvas.toDataURL('image/jpeg');
+
+            var a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'study_image.jpg';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
-    });
 
-    function saveImageOniOS() {
-        var canvas = document.createElement('canvas');
-        var ctx = canvas.getContext('2d');
-        canvas.width = image.naturalWidth;
-        canvas.height = image.naturalHeight;
-        ctx.drawImage(image, 0, 0);
+        function downloadImageOnAndroid() {
+            // Androidの場合は画像をダウンロードする
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0);
 
-        var dataURL = canvas.toDataURL('image/jpeg');
+            // ダウンロード用のリンクを作成
+            var a = document.createElement('a');
+            a.href = canvas.toDataURL('image/jpeg');
+            a.download = 'study_image.jpg';
 
-        var a = document.createElement('a');
-        a.href = dataURL;
-        a.download = 'study_image.jpg';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }
-
-    function downloadImageOnAndroid() {
-        // Androidの場合は画像をダウンロードする
-        var canvas = document.createElement('canvas');
-        var ctx = canvas.getContext('2d');
-        canvas.width = image.naturalWidth;
-        canvas.height = image.naturalHeight;
-        ctx.drawImage(image, 0, 0);
-
-        // ダウンロード用のリンクを作成
-        var a = document.createElement('a');
-        a.href = canvas.toDataURL('image/jpeg');
-        a.download = 'study_image.jpg';
-
-        // リンクをクリックしてダウンロードを開始
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }
-</script>
-
+            // リンクをクリックしてダウンロードを開始
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
 </body>
 </html>
