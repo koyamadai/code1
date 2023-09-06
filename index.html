@@ -61,7 +61,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 40px;
+            border-radius: 50px;
             border: 1px solid rgb(62, 62, 62);
             z-index: 1;
         }
@@ -128,7 +128,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 40px;
+            border-radius: 50px;
             border: 1px solid rgb(62, 62, 62);
             z-index: 1;
         }
@@ -179,7 +179,7 @@
             <p>賞品だよ。受け取ってね！</p>
         </div>
         <div class="download-section">
-            <button id="downloadButton" onclick="downloadImage()">ダウンロード</button>
+            <button id="downloadButton"></button>
         </div>
     </section>
 
@@ -193,7 +193,7 @@
             <p>賞品だよ！</p>
         </div>
         <div class="download-section">
-            <button id="downloadButtonAI" onclick="downloadImageAI()">ダウンロード</button>
+            <button id="downloadButton"></button>
         </div>
     </section>
 
@@ -203,53 +203,64 @@
         </a>
     </div>
 
-    <script>
-        var image = document.getElementById('image');
-        var aiImage = document.getElementById('aiImage');
+   <script>
+    var image = document.getElementById('image');
+    var aiImage = document.getElementById('aiImage');
 
-        function downloadImage() {
-            var userAgent = navigator.userAgent.toLowerCase();
+    var downloadButton = document.getElementById('downloadButton');
+    downloadButton.addEventListener('click', function() {
+        var userAgent = navigator.userAgent.toLowerCase();
 
-            if (userAgent.indexOf('android') !== -1) {
-                // Androidの場合は画像を保存する
-                saveImageOnAndroid(image);
-            } else {
-                // iOSの場合はユーザに保存を促す
-                showSaveImagePrompt();
-            }
+        if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
+            // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
+            saveImageOniOS();
+        } else if (userAgent.indexOf('android') !== -1) {
+            // Androidの場合は画像をダウンロードする
+            downloadImageOnAndroid();
+        } else {
+            // 他のデバイスの場合はメッセージを表示
+            alert('画像の保存はサポートされていません。');
         }
+    });
 
-        function downloadImageAI() {
-            var userAgent = navigator.userAgent.toLowerCase();
+    function saveImageOniOS() {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        ctx.drawImage(image, 0, 0);
 
-            if (userAgent.indexOf('android') !== -1) {
-                // Androidの場合は画像を保存する
-                saveImageOnAndroid(aiImage);
-            } else {
-                // iOSの場合はユーザに保存を促す
-                showSaveImagePrompt();
-            }
-        }
+        var dataURL = canvas.toDataURL('image/jpeg');
 
-        function saveImageOnAndroid(imgElement) {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = imgElement.naturalWidth;
-            canvas.height = imgElement.naturalHeight;
-            ctx.drawImage(imgElement, 0, 0);
+        var a = document.createElement('a');
+        a.href = dataURL;
+        a.download = 'study_image.jpg';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
 
-            var dataURL = canvas.toDataURL('image/jpeg');
+    function downloadImageOnAndroid() {
+        // Androidの場合は画像をダウンロードする
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        ctx.drawImage(image, 0, 0);
 
-            var a = document.createElement('a');
-            a.href = dataURL;
-            a.download = 'study_image.jpg';
-            a.click();
-        }
+        // ダウンロード用のリンクを作成
+        var a = document.createElement('a');
+        a.href = canvas.toDataURL('image/jpeg');
+        a.download = 'study_image.jpg';
 
-        function showSaveImagePrompt() {
-            // iOSの場合はアラートを表示する
-            alert('画像内の余白を長押しし、"写真"に保存を選択してください。');
-        }
-    </script>
+        // リンクをクリックしてダウンロードを開始
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+</script>
+
 </body>
 </html>
