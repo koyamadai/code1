@@ -8,11 +8,11 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Mamelon', sans-serif; /* 新しいフォントを適用 */
+            font-family: 'Yu Gothic', sans-serif;
             overflow-x: hidden;
         }
         span.sample3 {
-            font-family: "Mamelon", sans-serif; /* 新しいフォントを適用 */
+            font-family: "Yu Gothic";
         }
         .background-container {
             position: fixed;
@@ -179,7 +179,7 @@
             <p>賞品だよ。受け取ってね！</p>
         </div>
         <div class="download-section">
-            <button id="downloadButton"></button>
+            <button id="downloadButton" onclick="downloadImage()">ダウンロード</button>
         </div>
     </section>
 
@@ -193,7 +193,7 @@
             <p>賞品だよ！</p>
         </div>
         <div class="download-section">
-            <button id="downloadButton"></button>
+            <button id="downloadButtonAI" onclick="downloadImageAI()">ダウンロード</button>
         </div>
     </section>
 
@@ -207,22 +207,49 @@
         var image = document.getElementById('image');
         var aiImage = document.getElementById('aiImage');
 
-        var downloadButton = document.getElementById('downloadButton');
-        downloadButton.addEventListener('click', function() {
+        function downloadImage() {
             var userAgent = navigator.userAgent.toLowerCase();
 
             if (userAgent.indexOf('android') !== -1) {
                 // Androidの場合は画像を保存する
-                saveImageOnAndroid();
+                saveImageOnAndroid(image);
             } else {
                 // iOSの場合はユーザに保存を促す
                 showSaveImagePrompt();
             }
-        });
+        }
 
-        function saveImageOnAndroid() {
+        function downloadImageAI() {
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (userAgent.indexOf('android') !== -1) {
+                // Androidの場合は画像を保存する
+                saveImageOnAndroid(aiImage);
+            } else {
+                // iOSの場合はユーザに保存を促す
+                showSaveImagePrompt();
+            }
+        }
+
+        function saveImageOnAndroid(imgElement) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
-            canvas.width = image.naturalWidth;
-            canvas.height = image.naturalHeight;
-            ctx.drawImage
+            canvas.width = imgElement.naturalWidth;
+            canvas.height = imgElement.naturalHeight;
+            ctx.drawImage(imgElement, 0, 0);
+
+            var dataURL = canvas.toDataURL('image/jpeg');
+
+            var a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'study_image.jpg';
+            a.click();
+        }
+
+        function showSaveImagePrompt() {
+            // iOSの場合はアラートを表示する
+            alert('画像内の余白を長押しし、"写真"に保存を選択してください。');
+        }
+    </script>
+</body>
+</html>
