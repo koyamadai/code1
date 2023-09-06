@@ -5,167 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>スタンプゲット！！</title>
     <style>
-        @font-face {
-            font-family: 'Mamelon';
-            src: url('Mamelon-3HiRegular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
+    @font-face {
+        font-family: 'Mamelon';
+        src: url('Mamelon-3HiRegular.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Mamelon', sans-serif;
+        overflow-x: hidden;
+    }
+    span.sample3 {
+        font-family: "Mamelon", sans-serif;
+    }
+    .background-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-image: url('poster.png');
+        background-size: cover;
+        z-index: -1;
+        animation: backgroundScroll 20s linear infinite;
+    }
+    @keyframes backgroundScroll {
+        0% {
+            background-position: 0 0;
         }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Mamelon', sans-serif;
-            overflow-x: hidden;
+        100% {
+            background-position: 0 100%;
         }
-        span.sample3 {
-            font-family: "Mamelon", sans-serif;
-        }
-        .background-container {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-image: url('poster.png');
-            background-size: cover;
-            z-index: -1;
-            animation: backgroundScroll 20s linear infinite;
-        }
-        @keyframes backgroundScroll {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 100%;
-            }
-        }
-        /* ヘッダー画像のスタイル */
-        #header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px;
-            color: white;
-            z-index: 1;
-        }
-        .image-gallery {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-        .image-container {
-            position: relative;
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50px;
-            border: 1px solid rgb(62, 62, 62);
-            z-index: 1;
-        }
-        #image {
-            max-width: 100%;
-            border-radius: 20px;
-            position: relative;
-            z-index: 2;
-        }
-        .img-rounded {
-            border-radius: 50%;
-        }
-        .image-description {
-            margin-top: 20px;
-            text-align: center;
-            color: #333;
-            position: relative;
-            z-index: 3;
-        }
-        .image-description img {
-            max-width: 100%;
-        }
-        .image-description p {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-        }
-        .download-section {
-            margin-top: 30px;
-        }
-        #downloadButton {
-            background-image: url('st.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-color: rgba(0, 0, 0, 0);
-            border: none;
-            padding: 0;
-            width: 200px;
-            height: 80px;
-            cursor: pointer;
-        }
-        #downloadButtonAI {
-            background-image: url('st.png'); /* 2番目のボタンは同じ画像を使用 */
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-color: rgba(0, 0, 0, 0);
-            border: none;
-            padding: 0;
-            width: 200px;
-            height: 80px;
-            cursor: pointer;
-        }
-        .ai-image-container {
-            position: relative;
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        .ai-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 50px;
-            border: 1px solid rgb(62, 62, 62);
-            z-index: 1;
-        }
-        #aiImage {
-            max-width: 100%;
-            border-radius: 20px;
-            position: relative;
-            z-index: 2;
-        }
-        /* フード画像のスタイル */
-        .food-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 2;
-            padding: 10px 0;
-            background-color: rgba(0, 0, 0, 0);
-        }
-        .food-img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+    }
+    /* ヘッダー画像のスタイル */
+    #header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        color: white;
+        z-index: 1;
+    }
+    .image-gallery {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .image-container {
+        position: relative;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        border: 1px solid rgb(62, 62, 62);
+        z-index: 1; /* 前面に表示 */
+    }
+    #image {
+        max-width: 100%;
+        border-radius: 20px;
+        position: relative;
+        z-index: 2; /* 前面に表示 */
+    }
+    .img-rounded {
+        border-radius: 50%;
+    }
+    .image-description {
+        margin-top: 20px;
+        text-align: center;
+        color: #333;
+        position: relative;
+        z-index: 2; /* 前面に表示 */
+    }
+    .image-description img {
+        max-width: 100%;
+    }
+    .image-description p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        z-index: 3; /* 最前面に表示 */
+    }
+    .download-section {
+        margin-top: 30px;
+    }
+    #downloadButton {
+        background-image: url('st.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        padding: 0;
+        width: 200px;
+        height: 80px;
+        cursor: pointer;
+    }
+    #downloadButtonAI {
+        background-image: url('st.png'); /* 2番目のボタンは同じ画像を使用 */
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        padding: 0;
+        width: 200px;
+        height: 80px;
+        cursor: pointer;
+    }
+    .ai-image-container {
+        position: relative;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .ai-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        border: 1px solid rgb(62, 62, 62);
+        z-index: 1; /* 前面に表示 */
+    }
+    #aiImage {
+        max-width: 100%;
+        border-radius: 20px;
+        position: relative;
+        z-index: 2; /* 前面に表示 */
+    }
+    /* フード画像のスタイル */
+    .food-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 2;
+        padding: 10px 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .food-img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
