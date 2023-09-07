@@ -229,13 +229,13 @@
 
             if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
                 // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
-                saveImageOniOS(image);
+                alert('画像を長押しし、写真に保存を選択');
             } else if (userAgent.indexOf('android') !== -1) {
                 // Androidの場合は画像をダウンロードする
                 downloadImageOnAndroid(image);
             } else {
                 // 他のデバイスの場合はメッセージを表示
-                alert('画像の保存はサポートされていません。');
+                alert('画像を長押しし、写真に保存を選択');
             }
         });
 
@@ -244,13 +244,13 @@
 
             if (userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1) {
                 // iPhoneまたはiPadの場合は画像を保存するポップアップを表示
-                saveImageOniOS(aiImage);
+               alert('画像を長押しし、写真に保存を選択');
             } else if (userAgent.indexOf('android') !== -1) {
                 // Androidの場合は画像をダウンロードする
                 downloadImageOnAndroid(aiImage);
             } else {
                 // 他のデバイスの場合はメッセージを表示
-                alert('画像の保存はサポートされていません。');
+               alert('画像を長押しし、写真に保存を選択');
             }
         });
 
