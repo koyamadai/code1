@@ -280,12 +280,12 @@
             canvas.height = image.naturalHeight;
             ctx.drawImage(image, 0, 0);
 
-            // ダウンロード用のリンクを作成
+            
             var a = document.createElement('a');
             a.href = canvas.toDataURL('image/jpeg');
             a.download = 'study_image.jpg';
 
-            // リンクをクリックしてダウンロードを開始
+          
             a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
